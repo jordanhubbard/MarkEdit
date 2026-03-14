@@ -94,6 +94,7 @@ extension EditorViewController: NSToolbarDelegate {
       case .shareDocument: return shareDocumentItem
       case .copyPandocCommand: return copyPandocCommandItem
       case .writingTools: return writingToolsItem
+      case .livePreview: return livePreviewItem
       default:
         if let customItem = customItem(with: itemIdentifier) {
           return .with(identifier: itemIdentifier, customItem: customItem)
@@ -266,6 +267,12 @@ private extension EditorViewController {
       return .with(identifier: .writingTools, menu: menu.copiedMenu)
     } else {
       return nil
+    }
+  }
+
+  var livePreviewItem: NSToolbarItem {
+    .with(identifier: .livePreview) { [weak self] in
+      self?.toggleLivePreview()
     }
   }
 

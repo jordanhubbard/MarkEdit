@@ -100,6 +100,7 @@ extension NSToolbarItem.Identifier {
   static let shareDocument = newItem("shareDocument")
   static let copyPandocCommand = newItem("copyPandocCommand")
   static let writingTools = newItem("writingTools")
+  static let livePreview = newItem("livePreview")
 
   static var defaultItems: [NSToolbarItem.Identifier] {
     [
@@ -138,6 +139,7 @@ extension NSToolbarItem.Identifier {
       return []
     }()
     + [
+      .livePreview,
       .space,
       .flexibleSpace,
     ]
@@ -170,6 +172,7 @@ private extension NSToolbarItem.Identifier {
     case .shareDocument: return Localized.Toolbar.shareDocument
     case .copyPandocCommand: return Localized.Toolbar.copyPandocCommand
     case .writingTools: return Localized.WritingTools.title
+    case .livePreview: return Localized.Toolbar.livePreview
     default: fatalError("Unexpected toolbar item identifier: \(self)")
     }
   }
@@ -193,6 +196,7 @@ private extension NSToolbarItem.Identifier {
     case .shareDocument: return Icons.squareAndArrowUp
     case .copyPandocCommand: return Icons.terminal
     case .writingTools: return Icons.wandAndSparkles
+    case .livePreview: return Icons.eye
     default: fatalError("Unexpected toolbar item identifier: \(self)")
     }
   }

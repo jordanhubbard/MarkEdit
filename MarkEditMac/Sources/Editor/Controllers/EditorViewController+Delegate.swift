@@ -105,6 +105,7 @@ extension EditorViewController: EditorModuleCoreDelegate {
   func editorCoreWindowDidLoad(_ sender: EditorModuleCore) {
     hasFinishedLoading = true
     resetEditor()
+    refreshLivePreview()
 
     loadingIndicator.scaleTo(0.9, duration: 0.1) {
       let duration: TimeInterval = 0.3
@@ -112,9 +113,9 @@ extension EditorViewController: EditorModuleCoreDelegate {
       NSAnimationContext.runAnimationGroup { context in
         context.duration = duration
         self.loadingIndicator.animator().alphaValue = 0
-      } completionHandler: {
+      } completionHandler: { [weak self] in
         // Destroy it since we only need the indicator for cold launch
-        self.loadingIndicator.removeFromSuperview()
+        Task { @MainActor [weak self] in self?.loadingIndicator.removeFromSuperview() }
       }
 
       self.loadingIndicator.scaleTo(2.0, duration: duration)
@@ -166,6 +167,8 @@ extension EditorViewController: EditorModuleCoreDelegate {
       if findPanel.mode != .hidden {
         updateSearchCounter()
       }
+
+      refreshLivePreview()
     } else {
       cancelCompletion()
     }

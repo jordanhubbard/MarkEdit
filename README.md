@@ -32,10 +32,20 @@ MarkEdit is a free and **open-source** Markdown editor, for macOS. It's just lik
 - Fast: edits 10 MB files easily
 - Lightweight: installer size is about 4 MB
 - Extensible: seamless integration with Shortcuts and AppleScript
+- **Built-in live preview**: side-by-side rendered Markdown and Mermaid diagram preview, no plugin required
 
 MarkEdit is designed to be simple and easy to use. You can also customize the UI and behavior by adding your own scripts, including utilizing CodeMirror extensions.
 
-For example, use [MarkEdit-preview](https://github.com/MarkEdit-app/MarkEdit-preview) to add a preview pane, and [MarkEdit-theming](https://github.com/MarkEdit-app/MarkEdit-theming) to customize themes.
+For example, use [MarkEdit-theming](https://github.com/MarkEdit-app/MarkEdit-theming) to customize themes.
+
+## Live Preview
+
+This fork adds a built-in side-by-side live preview panel. Click the eye icon in the toolbar (or toggle via **View → Live Preview**) to show a rendered Markdown view alongside the editor.
+
+- Renders standard Markdown via [marked.js](https://marked.js.org/)
+- Renders [Mermaid](https://mermaid.js.org/) diagrams for `.mmd` files and fenced ` ```mermaid ` blocks
+- Updates automatically as you type (debounced)
+- Works on macOS Sequoia and macOS Tahoe (macOS 26), including full Swift 6 strict concurrency compliance
 
 On macOS Tahoe, you can also use [MarkEdit-ai-writer](https://github.com/MarkEdit-app/MarkEdit-ai-writer) to effortlessly access Apple's generative language models.
 
